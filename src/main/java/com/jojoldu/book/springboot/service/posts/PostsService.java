@@ -14,11 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostsService {
     private final PostsRepository postsRepository;
 
+    // 저장기능
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
+    // 수정기능
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id).orElseThrow(()
@@ -27,6 +29,7 @@ public class PostsService {
         return id;
     }
 
+    // 조회기능
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(()
                 -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
