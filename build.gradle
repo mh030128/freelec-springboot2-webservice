@@ -24,6 +24,7 @@ dependencies {
 	implementation 'com.h2database:h2'
 	implementation 'org.springframework.session:spring-session-jdbc'
 	implementation 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'
