@@ -21,7 +21,7 @@ public class PostsRepositoryTest {
     PostsRepository postsRepository;
 
     @After
-    public void clanup() {
+    public void cleanup() {
         postsRepository.deleteAll();
     }
 

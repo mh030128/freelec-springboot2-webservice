@@ -22,7 +22,8 @@ public class Posts extends BaseTimeEntity {
     private String content;
 
     private String author;
-
+    
+    // 등록하기
     @Builder
     public Posts(String title, String content, String author) {
         this.title = title;

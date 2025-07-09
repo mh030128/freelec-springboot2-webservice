@@ -1,3 +1,4 @@
+# Created by .ignore support plugin (hsz.mobi)
 HELP.md
 .gradle
 build/
@@ -35,3 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# OAuth 설정 숨기기
+/src/main/resources/application-oauth.properties
