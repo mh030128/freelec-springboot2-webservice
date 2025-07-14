@@ -1,4 +1,4 @@
-package com.jojoldu.book.springboot.config.oauth.dto;
+package com.jojoldu.book.springboot.config.auth.dto;
 
 import com.jojoldu.book.springboot.domain.user.User;
 import lombok.Getter;
@@ -17,3 +17,5 @@ public class SessionUser implements Serializable {
         this.picture = user.getPicture();
     }
 }
+
+
