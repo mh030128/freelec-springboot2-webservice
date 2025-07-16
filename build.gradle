@@ -42,3 +42,7 @@ dependencies {
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
+
+bootJar {
+	mainClass = 'com.jojoldu.book.springboot.Application'
+}
