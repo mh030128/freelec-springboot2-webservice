@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = com.jojoldu.book.springboot.Application.class)
 @Transactional
 public class PostsRepositoryTest {
 
