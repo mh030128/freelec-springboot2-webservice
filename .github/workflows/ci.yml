@@ -1,0 +1,28 @@
+# 1. worlflows의 이름 지정
+name: CI
+
+# 2. workflows가 시작될 조건 지정
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 3. 실행환경 지정
+
+    # 4. 실행스텝 지정
+    steps:
+      - uses: actions/checkout@v3 # code checkout
+
+      - uses: actions/stepup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build  # Gradle build
+
