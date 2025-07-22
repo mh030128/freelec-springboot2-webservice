@@ -1,28 +1,45 @@
-# 1. worlflows의 이름 지정
 name: CI
 
-# 2. workflows가 시작될 조건 지정
 on:
   push:
     branches:
-      - master
+      - master  # master 브랜치에 푸시될 때 실행
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # 3. 실행환경 지정
+    runs-on: ubuntu-latest  # 실행 환경
 
-    # 4. 실행스텝 지정
     steps:
-      - uses: actions/checkout@v3 # code checkout
+      - name: Checkout code
+        uses: actions/checkout@v3  # 코드 체크아웃
 
-      - uses: actions/stepup-java@v3
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '17'  # JDK 17 설정
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: chmod +x gradlew  # Gradle 실행 권한 부여
 
       - name: Build with Gradle
-        run: ./gradlew clean build  # Gradle build
+        run: ./gradlew clean build  # Gradle 빌드
 
+      - name: Prepare deployment artifacts
+        run: |
+          zip -r freelec-springboot2-webservice.zip .  # 빌드된 파일을 압축
+          mkdir -p deploy  # 배포 폴더 생성
+          mv freelec-springboot2-webservice.zip deploy/  # 배포 폴더로 이동
+
+      - name: Deploy to S3
+        run: |
+          aws s3 cp deploy/freelec-springboot2-webservice.zip s3://freelec-springboot-build-jin/ --region ap-northeast-2 --acl private  # AWS S3에 배포
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}  # GitHub Secrets에 설정된 AWS Access Key
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}  # GitHub Secrets에 설정된 AWS Secret Key
+          AWS_DEFAULT_REGION: 'ap-northeast-2'
+
+      - name: Notify via email (optional)
+        if: success()  # 빌드가 성공적으로 완료되었을 때 이메일 알림 (외부 서비스나 GitHub Actions 자체 알림 사용 가능)
+        run: |
+          curl -X POST -d "subject=Build Completed&message=Your build has been completed successfully." -d "to=ksj32313486@gmail.com" http://email-notification-service.com/send
