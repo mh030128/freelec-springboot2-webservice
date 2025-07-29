@@ -19,10 +19,10 @@ public class ProfileControllerUnitTest {
         ProfileController controller = new ProfileController(env);
 
         // when
-        //String profile = controller.profile();
+        String profile = controller.profile();
 
         // then
-        //assertThat(profile).isEqualTo(expectedProfile);
+        assertThat(profile).isEqualTo(expectedProfile);
     }
 
     @Test
@@ -37,10 +37,10 @@ public class ProfileControllerUnitTest {
         ProfileController controller = new ProfileController(env);
 
         // when
-        //String profile = controller.profile();
+        String profile = controller.profile();
 
         // then
-        //assertThat(profile).isEqualTo(expectedProfile);
+        assertThat(profile).isEqualTo(expectedProfile);
     }
 
     @Test
@@ -51,9 +51,9 @@ public class ProfileControllerUnitTest {
         ProfileController controller = new ProfileController(env);
 
         // when
-        //String profile = controller.profile();
+        String profile = controller.profile();
 
         // then
-        //assertThat(profile).isEqualTo(expectedProfile);
+        assertThat(profile).isEqualTo(expectedProfile);
     }
 }
