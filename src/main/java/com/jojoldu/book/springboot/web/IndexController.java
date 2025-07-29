@@ -16,14 +16,14 @@ public class IndexController {
 
     private final PostsService postsService;
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
         return "index";
-    }
+    }*/
 
     // 저장기능
     @GetMapping("/posts/save")
