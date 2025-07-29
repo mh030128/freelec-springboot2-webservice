@@ -16,5 +16,6 @@ public class Application {
         SpringApplication.run으로 인해 내장 WAS(Web Application Server)를 실행
          */
         SpringApplication.run(Application.class, args);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>시작");
     }
 }
